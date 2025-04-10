@@ -85,6 +85,8 @@ def add_msa_to_json(
         entry = af3_json["sequences"][json_idx]
         entry["protein"]["unpairedMsa"] = a3m_lines[msa_idx]
         entry["protein"]["pairedMsa"] = ""
+        if "templates" not in entry["protein"]:
+            entry["protein"]["templates"] = []
 
     json_string = json.dumps(af3_json, indent=4)
     print(json_string, file=output_jsonpath.open("w"))
