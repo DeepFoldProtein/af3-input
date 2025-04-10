@@ -1,0 +1,54 @@
+{
+    "name": "1GZX",
+    "sequences": [
+        {
+            "protein": {
+                "id": [
+                    "A",
+                    "C"
+                ],
+                "sequence": "VLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR"
+            }
+        },
+        {
+            "protein": {
+                "id": [
+                    "B",
+                    "D"
+                ],
+                "sequence": "VHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH"
+            }
+        },
+        {
+            "ligand": {
+                "id": [
+                    "E",
+                    "G",
+                    "I",
+                    "K"
+                ],
+                "ccdCodes": [
+                    "HEM"
+                ]
+            }
+        },
+        {
+            "ligand": {
+                "id": [
+                    "F",
+                    "H",
+                    "J",
+                    "L"
+                ],
+                "ccdCodes": [
+                    "OXY"
+                ]
+            }
+        }
+    ],
+    "modelSeeds": [
+        1
+    ],
+    "dialect": "alphafold3",
+    "version": 1
+}
