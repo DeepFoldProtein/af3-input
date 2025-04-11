@@ -64,7 +64,7 @@ def add_msa_to_json(
                 use_filter=True,
                 use_templates=False,
                 use_pairing=True,
-                pairing_strategy="greedy",
+                pairing_strategy="dense",
                 host_url=host_url,
                 user_agent="AF3",
             )

@@ -150,7 +150,7 @@ def run_mmseqs2(
 
     if use_pairing:
         use_templates = False
-        mode = ""
+        mode = pairing_strategy
         # greedy is default, complete was the previous behavior
         if pairing_strategy == "greedy":
             mode = "pairgreedy"
