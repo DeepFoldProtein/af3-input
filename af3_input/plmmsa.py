@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 TQDM_BAR_FORMAT = (
     "{l_bar}{bar}| {n_fmt}/{total_fmt} [elapsed: {elapsed} remaining: {remaining}]"
 )
-DEEPFOLD_API_URL = "https://deepfold.org/api/colab"
+DEEPFOLD_API_URL = "https://svc.deepfold.org/api/colab"
 
 
 class MMseqs2Exception(Exception):
