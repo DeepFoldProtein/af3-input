@@ -1,22 +1,31 @@
 import logging
-import sys
+
+
+class TqdmHandler(logging.StreamHandler):
+    def __init__(self) -> None:
+        logging.StreamHandler.__init__(self)
+
+    def emit(self, record: logging.LogRecord) -> None:
+        from tqdm.auto import tqdm
+
+        msg = self.format(record)
+        tqdm.write(msg)
 
 
 def setup_logger():
     logger = logging.getLogger()
-    logger.setLevel(logging.DEBUG)  # Set the minimum logging level
 
-    # Create a stream handler (output to console)
-    handler = logging.StreamHandler(stream=sys.stderr)
-    handler.setLevel(logging.DEBUG)
+    if logger.handlers:
+        for handler in logger.handlers:
+            handler.close()
+            logger.removeHandler(handler)
 
-    # Set the custom formatter
-    formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
-    handler.setFormatter(formatter)
-
-    # Add the handler to the logger
-    logger.handlers.clear()
-    logger.addHandler(handler)
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s %(message)s",
+        handlers=[TqdmHandler()],
+        force=True,
+    )
 
     return logger
 
