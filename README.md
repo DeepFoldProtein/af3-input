@@ -7,7 +7,7 @@ This repository provides Python scripts for augmenting AlphaFold 3 input JSON fi
 To set up the necessary environment, execute the following command to install the required Python packages:
 
 ```sh
-pip install -r requirements.txt
+pip install .
 ```
 
 ## Usage
@@ -38,7 +38,7 @@ The `mmseqs.py` script facilitates the integration of MSAs generated using MMseq
 **Command-line usage:**
 
 ```sh
-python -m af3_input.mmseqs <input_json> \
+af3-mmseqs <input_json> \
     [--output_json <output_json>] \
     [--host_url <host_url>]
 ```
@@ -56,9 +56,9 @@ The `add_plmmsa_msa.py` script enables the addition of MSAs generated using plmM
 **Command-line usage:**
 
 ```sh
-python -m af3_input.plmmsa --input_json <input_json> \
+af3-plmmsa --input_json <input_json> \
     [--output_json <output_json>] \
-    [--host_url <host_url>] \
+    [--output_a3m <output_a3m>] \
     [--use_pairing]
 ```
 
@@ -72,7 +72,7 @@ python -m af3_input.plmmsa --input_json <input_json> \
 ## Examples
 
 ```sh
-python -m af3_input.mmseqs examples/2PV7.json > input.json
+af3-plmmsa examples/2PV7.json > input.json
 ```
 
 ## Contribution Guidelines
