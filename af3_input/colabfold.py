@@ -10,7 +10,7 @@ from typing import List, Tuple
 import requests
 from tqdm import tqdm
 
-from .utils import setup_logger
+from af3_input.utils import setup_logger
 
 setup_logger()
 logger = logging.getLogger(__name__)
@@ -32,6 +32,7 @@ def run_mmseqs2(
     host_url: str = "https://api.colabfold.com",
     user_agent: str = "",
     filter=None,
+    sleep_time: float = 5.0,
 ) -> Tuple[List[str], List[str]]:
     submission_endpoint = "ticket/pair" if use_pairing else "ticket/msa"
 
@@ -183,7 +184,7 @@ def run_mmseqs2(
                 # Resubmit job until it goes through
                 out = submit(seqs_unique, mode, N)
                 while out["status"] in ["UNKNOWN", "RATELIMIT"]:
-                    sleep_time = 5 + random.randint(0, 5)
+                    # sleep_time = random.randint(0, 5)
                     logger.info(f"Sleeping for {sleep_time}s. Reason: {out['status']}")
                     # resubmit
                     time.sleep(sleep_time)
@@ -206,14 +207,14 @@ def run_mmseqs2(
                 ID, TIME = out["id"], 0
                 pbar.set_description(out["status"])
                 while out["status"] in ["UNKNOWN", "RUNNING", "PENDING"]:
-                    t = 5 + random.randint(0, 5)
-                    logger.info(f"Sleeping for {t}s. Reason: {out['status']}")
-                    time.sleep(t)
+                    sleep_time = 5 + random.randint(0, 5)
+                    logger.info(f"Sleeping for {sleep_time}s. Reason: {out['status']}")
+                    time.sleep(sleep_time)
                     out = status(ID)
                     pbar.set_description(out["status"])
                     if out["status"] == "RUNNING":
-                        TIME += t
-                        pbar.update(n=t)
+                        TIME += sleep_time
+                        pbar.update(n=sleep_time)
                     # if TIME > 900 and out["status"] != "COMPLETE":
                     #  # something failed on the server side, need to resubmit
                     #  N += 1

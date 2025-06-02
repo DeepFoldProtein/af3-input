@@ -5,8 +5,8 @@ import pathlib
 import tempfile
 from typing import Optional
 
-from .colabfold import run_mmseqs2
-from .utils import setup_logger
+from af3_input.colabfold import run_mmseqs2
+from af3_input.utils import setup_logger
 
 setup_logger()
 logger = logging.getLogger(__name__)
@@ -127,7 +127,7 @@ def main():
     )
     parser.add_argument("--use_pairing", action="store_true")
     parser.add_argument("--host_url", type=str, default=DEEPFOLD_API_URL)
-    parser.add_argument("--block", action="store_true")
+    parser.add_argument("--af2", action="store_true", dest="use_block")
 
     args = parser.parse_args()
     add_msa_to_json(
@@ -135,7 +135,7 @@ def main():
         output_jsonpath=args.output_json,
         output_a3mpath=args.output_a3m,
         use_pairing=args.use_pairing,
-        use_block=args.block,
+        use_block=args.use_block,
         host_url=args.host_url,
     )
 

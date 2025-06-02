@@ -3,8 +3,8 @@ import logging
 import pathlib
 import tempfile
 
-from .colabfold import run_mmseqs2
-from .utils import setup_logger
+from af3_input.colabfold import run_mmseqs2
+from af3_input.utils import setup_logger
 
 setup_logger()
 logger = logging.getLogger(__name__)
