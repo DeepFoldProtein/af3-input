@@ -12,12 +12,8 @@ setup_logger()
 logger = logging.getLogger(__name__)
 
 
-TQDM_BAR_FORMAT = (
-    "{l_bar}{bar}| {n_fmt}/{total_fmt} [elapsed: {elapsed} remaining: {remaining}]"
-)
-DEEPFOLD_API_URL = os.environ.get(
-    "DEEPFOLD_API_URL", "https://df-plm.deepfold.org/api/colab"
-)
+TQDM_BAR_FORMAT = "{l_bar}{bar}| {n_fmt}/{total_fmt} [elapsed: {elapsed} remaining: {remaining}]"
+DEEPFOLD_API_URL = os.environ.get("DEEPFOLD_API_URL", "https://df-plm.deepfold.org/api/colab")
 
 
 class MMseqs2Exception(Exception):

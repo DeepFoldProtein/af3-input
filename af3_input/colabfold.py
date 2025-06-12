@@ -16,9 +16,7 @@ setup_logger()
 logger = logging.getLogger(__name__)
 
 
-TQDM_BAR_FORMAT = (
-    "{l_bar}{bar}| {n_fmt}/{total_fmt} [elapsed: {elapsed} remaining: {remaining}]"
-)
+TQDM_BAR_FORMAT = "{l_bar}{bar}| {n_fmt}/{total_fmt} [elapsed: {elapsed} remaining: {remaining}]"
 
 
 def run_mmseqs2(
@@ -63,9 +61,7 @@ def run_mmseqs2(
                 continue
             except Exception as e:
                 error_count += 1
-                logger.warning(
-                    f"Error while fetching result from MSA server. Retrying... ({error_count}/5)"
-                )
+                logger.warning(f"Error while fetching result from MSA server. Retrying... ({error_count}/5)")
                 logger.warning(f"Error: {e}")
                 time.sleep(5)
                 if error_count > 5:
@@ -84,19 +80,13 @@ def run_mmseqs2(
         while True:
             error_count = 0
             try:
-                res = requests.get(
-                    f"{host_url}/ticket/{ID}", timeout=6.02, headers=headers
-                )
+                res = requests.get(f"{host_url}/ticket/{ID}", timeout=6.02, headers=headers)
             except requests.exceptions.Timeout:
-                logger.warning(
-                    "Timeout while fetching status from MSA server. Retrying..."
-                )
+                logger.warning("Timeout while fetching status from MSA server. Retrying...")
                 continue
             except Exception as e:
                 error_count += 1
-                logger.warning(
-                    f"Error while fetching result from MSA server. Retrying... ({error_count}/5)"
-                )
+                logger.warning(f"Error while fetching result from MSA server. Retrying... ({error_count}/5)")
                 logger.warning(f"Error: {e}")
                 time.sleep(5)
                 if error_count > 5:
@@ -114,19 +104,13 @@ def run_mmseqs2(
         error_count = 0
         while True:
             try:
-                res = requests.get(
-                    f"{host_url}/result/download/{ID}", timeout=6.02, headers=headers
-                )
+                res = requests.get(f"{host_url}/result/download/{ID}", timeout=6.02, headers=headers)
             except requests.exceptions.Timeout:
-                logger.warning(
-                    "Timeout while fetching result from MSA server. Retrying..."
-                )
+                logger.warning("Timeout while fetching result from MSA server. Retrying...")
                 continue
             except Exception as e:
                 error_count += 1
-                logger.warning(
-                    f"Error while fetching result from MSA server. Retrying... ({error_count}/5)"
-                )
+                logger.warning(f"Error while fetching result from MSA server. Retrying... ({error_count}/5)")
                 logger.warning(f"Error: {e}")
                 time.sleep(5)
                 if error_count > 5:
@@ -198,10 +182,7 @@ def run_mmseqs2(
                     )
 
                 if out["status"] == "MAINTENANCE":
-                    raise Exception(
-                        "MMseqs2 API is undergoing maintenance."
-                        " Please try again in a few minutes."
-                    )
+                    raise Exception("MMseqs2 API is undergoing maintenance. Please try again in a few minutes.")
 
                 # wait for job to finish
                 ID, TIME = out["id"], 0
@@ -280,15 +261,12 @@ def run_mmseqs2(
                             headers=headers,
                         )
                     except requests.exceptions.Timeout:
-                        logger.warning(
-                            "Timeout while submitting to template server. Retrying..."
-                        )
+                        logger.warning("Timeout while submitting to template server. Retrying...")
                         continue
                     except Exception as e:
                         error_count += 1
                         logger.warning(
-                            "Error while fetching result from template server."
-                            f" Retrying... ({error_count}/5)"
+                            f"Error while fetching result from template server. Retrying... ({error_count}/5)"
                         )
                         logger.warning(f"Error: {e}")
                         time.sleep(5)
