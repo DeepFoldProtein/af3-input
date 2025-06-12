@@ -6,13 +6,12 @@ import tempfile
 from af3_input.colabfold import run_mmseqs2
 from af3_input.utils import setup_logger
 
+
 setup_logger()
 logger = logging.getLogger(__name__)
 
 
-TQDM_BAR_FORMAT = (
-    "{l_bar}{bar}| {n_fmt}/{total_fmt} [elapsed: {elapsed} remaining: {remaining}]"
-)
+TQDM_BAR_FORMAT = "{l_bar}{bar}| {n_fmt}/{total_fmt} [elapsed: {elapsed} remaining: {remaining}]"
 MMSEQS_API_URL = "https://api.colabfold.com"
 
 

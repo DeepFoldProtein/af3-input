@@ -12,6 +12,7 @@ from tqdm import tqdm
 
 from af3_input.utils import setup_logger
 
+
 setup_logger()
 logger = logging.getLogger(__name__)
 

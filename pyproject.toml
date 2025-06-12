@@ -4,7 +4,7 @@ version = "1.0.0"
 description = "AlphaFold 3 input generator"
 authors = [{ name = "Minsoo Kim", email = "vv137.xyz@gmail.com" }]
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 dependencies = [
     "requests (>=2.32.3,<3.0.0)",
     "pyyaml (>=6.0.2,<7.0.0)",
