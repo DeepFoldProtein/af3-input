@@ -12,8 +12,12 @@ setup_logger()
 logger = logging.getLogger(__name__)
 
 
-TQDM_BAR_FORMAT = "{l_bar}{bar}| {n_fmt}/{total_fmt} [elapsed: {elapsed} remaining: {remaining}]"
-DEEPFOLD_API_URL = os.environ.get("DEEPFOLD_API_URL", "https://df-plm.deepfold.org/api/colab")
+TQDM_BAR_FORMAT = (
+    "{l_bar}{bar}| {n_fmt}/{total_fmt} [elapsed: {elapsed} remaining: {remaining}]"
+)
+DEEPFOLD_API_URL = os.environ.get(
+    "DEEPFOLD_API_URL", "https://df-plm.deepfold.org/api/colab"
+)
 
 
 class MMseqs2Exception(Exception):
@@ -55,7 +59,7 @@ def add_msa_to_json(
     id_map = list(sequences.keys())
     seqs = [sequences[i] for i in id_map]
 
-    with tempfile.TemporaryDirectory() as tmp_dir:
+    with tempfile.TemporaryDirectory(delete=True) as tmp_dir:
         # Get paired MSA:
         if use_pairing:
             logger.info(f"Fetch paired+unpaired MSAs from {host_url}")

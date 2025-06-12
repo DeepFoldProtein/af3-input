@@ -10,7 +10,9 @@ setup_logger()
 logger = logging.getLogger(__name__)
 
 
-TQDM_BAR_FORMAT = "{l_bar}{bar}| {n_fmt}/{total_fmt} [elapsed: {elapsed} remaining: {remaining}]"
+TQDM_BAR_FORMAT = (
+    "{l_bar}{bar}| {n_fmt}/{total_fmt} [elapsed: {elapsed} remaining: {remaining}]"
+)
 MMSEQS_API_URL = "https://api.colabfold.com"
 
 
@@ -50,7 +52,7 @@ def add_msa_to_json(
     id_map = list(sequences.keys())
     seqs = [sequences[i] for i in id_map]
 
-    with tempfile.TemporaryDirectory() as tmp_dir:
+    with tempfile.TemporaryDirectory(delete=True) as tmp_dir:
         # Get unpaired MSAs.
         logger.info(f"Fetch unpaired MSAs from {host_url}")
         a3m_lines, _ = run_mmseqs2(
